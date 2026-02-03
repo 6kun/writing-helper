@@ -13,31 +13,31 @@ export default function FeatureLayout({
   subtitle,
 }: FeatureLayoutProps) {
   return (
-    <div className="bg-gray-50 flex flex-col">
+    <div className="bg-bg-gray flex flex-col min-h-screen">
       <Navigation />
-      
+
       <main className="flex-1">
         {(title || subtitle) && (
-          <div className="bg-white shadow">
-            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <div className="bg-pure-white border-b border-border-gray">
+            <div className="mx-auto max-w-6xl px-6 py-12">
               {title && (
-                <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+                <h1 className="text-4xl font-semibold text-text-primary tracking-tight fade-in">
                   {title}
                 </h1>
               )}
               {subtitle && (
-                <p className="mt-2 text-lg text-gray-600">
+                <p className="mt-3 text-lg text-text-secondary max-w-3xl slide-in">
                   {subtitle}
                 </p>
               )}
             </div>
           </div>
         )}
-        
-        <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+
+        <div className="mx-auto max-w-6xl py-8 px-6">
           {children}
         </div>
       </main>
     </div>
   );
-} 
+}

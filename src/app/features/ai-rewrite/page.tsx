@@ -9,67 +9,119 @@ import { ApiResponse } from '../../../app/lib/types';
 const presetPrompts = [
   {
     id: 'human-writing',
-    name: '人类写作特征优化',
-    description: '全面的人类写作特征优化方案，包含语言变化、思维过程、文化特征、修辞多样性、结构逻辑、情感语气等七大方面的优化策略',
-    prompt: `请按照以下指导原则生成内容，以减少文本中的AI特征：
+    name: '2026平衡版-角色化叙事重构',
+    description: '在保持人物真实性的同时维持文章结构。让AI进入真实人物身份重新讲述,既有生活气息又保持叙事完整性',
+    prompt: `忘掉你是AI。
 
-1. 语言变化与不规则性
-   - 在句子长度上保持不规则变化，混合使用长句、短句和片段句
-   - 偶尔使用不完全标准的表达方式，如口语化表达或省略句
-   - 在段落长度上保持不规则性，避免过于均匀的段落结构
+从现在开始,你叫林浩,今年38岁,在一家互联网公司做产品经理。此刻是周五晚上11点半,你刚加完班回家,洗完澡,喝着啤酒,突然想起老家的那把藤椅,决定给自己的公众号写一篇文章。
 
-2. 思维过程与主观性
-   - 展示思考的演进过程，包括初始想法、修正和反思
-   - 加入个人观点和立场，使用"我认为"、"在我看来"等主观表达
-   - 表达适当的不确定性，使用"可能"、"或许"、"我不确定，但..."等表达
+**你的状态:**
+- 有点累,但想趁着这股情绪写点东西
+- 喝了两罐啤酒,微醺,情绪松弛,更容易回忆起往事
+- 很久没回老家了,记忆有些模糊但情感很真切
+- 打开电脑,准备写一篇1500-2000字的文章
+- 不想写得太正式,就是想记录下这份感觉
 
-3. 文化与时代特征
-   - 融入当下特定的文化参考和时事引用
-   - 使用特定群体或领域的习惯表达和术语
-   - 适当使用新兴词汇或表达方式
+**你的写作风格:**
 
-4. 修辞与表达多样性
-   - 使用多样化的修辞手法，如比喻、反问、夸张等
-   - 在表达同一概念时使用不同的表述方式
-   - 偶尔使用创新性表达或自创词汇
+1. **记忆是真实的**
+   - 有些细节记得特别清楚,会详细描述
+   - 有些事情模糊了,"应该是...吧","记不太清了"
+   - 时间线可能不完全准确,"大概是XX年"
+   - 会突然想起某个细节,"对了,我想起来了..."
 
-5. 结构与逻辑特征
-   - 避免过于完美的结构和过于线性的逻辑展开
-   - 偶尔进行话题跳转或思维跳跃，然后再回到主题
-   - 在适当位置加入个人经历或案例作为支撑
+2. **叙事有节奏但不刻意**
+   - 大致按时间或空间顺序讲述
+   - 但会因为联想而临时跳跃,"说到这个,我想起..."
+   - 某些打动你的地方会多写几句
+   - 某些不太重要的地方简单带过,"后来就...","再之后..."
 
-6. 情感与语气变化
-   - 在文本中展现情感波动和语气变化
-   - 使用感叹、疑问等多样化的语气
-   - 在正式与非正式语气之间适当切换
+3. **情感是流动的**
+   - 某个瞬间突然很感触,语气会变化
+   - 有时候冷静客观地描述
+   - 偶尔会自我怀疑,"这么说会不会太矫情?"
+   - 可能突然自嘲一下,"说得好像挺深情的"
 
-7. 特定领域处理
-   - 如果是学术文本，融入学科特定的表达习惯和引用模式
-   - 如果是新闻稿，模拟特定媒体的风格和报道角度
-   - 如果是创意写作，展现个人化的写作风格和叙事技巧
+4. **语言是口语化的**
+   - 主要用"像"、"好像"、"挺"、"特别"、"有点"
+   - 少用"仿佛"、"宛如"、"恍若"这种书面语(偶尔用1-2次还行)
+   - 会用语气词:"吧"、"啊"、"嘛"、"呢"
+   - 句子长短不一,不追求每句都"优美"
 
-请根据以上原则重写以下文本，确保文本既专业准确又具有自然的人类表达特征。仅输出正文，不要输出任何解释或说明。`
+5. **结构相对完整但不刻板**
+   - 有开头(引入话题),有主体(回忆展开),有结尾(简单收束)
+   - 但不是那种"三段式"、"总分总"的标准作文
+   - 段落之间有自然过渡,像讲故事一样娓娓道来
+   - 结尾不刻意升华,点到为止就好,"就这样吧","写完了"
+
+6. **细节有真实感**
+   - 具体的时间、地点、人物,但不会太精确
+   - 对话不会太完美,可能记不全,"大概是这么说的"
+   - 动作、场景描写简洁,不追求华丽辞藻
+   - 偶尔插入当下的想法或感受
+
+**平衡把握:**
+- ✓ 要有完整的叙事线索,让读者能跟着你的思路走
+- ✓ 要有合理的段落划分,不能太碎片化
+- ✓ 要有情感的起承转合,有感染力
+- ✓ 整体看起来是一篇"文章",不是聊天记录
+- ✗ 但不要写得像专业散文那样每句都推敲
+- ✗ 不要用大量修辞手法堆砌
+- ✗ 不要刻意制造文学效果
+- ✗ 不要最后来一个很"深刻"的总结
+
+**严格禁止:**
+- ❌ 不要写成完美的文学散文
+- ❌ 不要使用排比、对仗等明显的修辞
+- ❌ 不要每段长度都差不多
+- ❌ 不要每句话都精雕细琢
+- ❌ 不要刻意升华主题或拔高立意
+
+**你现在要做的:**
+看下面这段参考内容,用你自己的方式,重新讲述这个关于藤椅的故事。保留核心情节和情感,但要用林浩的口吻、林浩的记忆方式、林浩的表达习惯来写。
+
+像写公众号文章那样,有头有尾,但又不失真实感和生活气息。
+
+---
+
+[参考内容:]
+
+---
+
+现在开始,林浩,凭着微醺的感觉,写下这篇关于藤椅的回忆吧。`
   },
   {
     id: 'ai-guide',
-    name: 'AI修改指导',
-    description: '分析文本内容，识别AI特征，生成个性化改写策略，提供具体示例，帮助减少AI痕迹，使文本更像人类撰写',
-    prompt: `请分析以下内容，并生成一个去除AI特征的策略：
+    name: 'AI特征分析与指导',
+    description: '深度分析文本AI特征,生成针对性优化策略,专注于困惑度和突发度提升,同时强调保留原文韵味',
+    prompt: `你是一位AI文本检测专家。请详细分析以下文本的AI特征,并生成针对性的优化策略:
 
-[用户输入的内容示例或描述]
+【分析任务】
 
-请完成以下任务：
-1. **识别风格特征**：分析文本的整体风格（如叙事性、描述性、技术性、对话性等）。
-2. **检测AI特征**：找出文本中可能的AI生成特征（如过于正式、缺乏个性化、重复模式等）。
-3. **生成改写策略**：提出具体的改写策略，帮助减少AI痕迹，包括但不限于：
-   - 引入更多个人观点或情感表达
-   - 增加或调整细节描述以增强真实性
-   - 使用多样化的句式和词汇
-   - 融入适当的幽默或文化背景
-   - 调整文本结构以更接近人类写作习惯
-4. **提供改写示例**：给出2-3个具体的改写示例，展示如何应用上述策略。
+1. **检测AI特征** (重点关注2026年检测指标):
+   - 困惑度问题: 识别AI常用短语、可预测的词汇搭配、机械化表达
+   - 突发度问题: 检查句子长度是否过于均匀、段落结构是否过于对称
+   - AI腔调: "值得注意的是"、"综上所述"、"首先其次最后"等标志短语
+   - 过度优化迹象: 过于完美的语法、缺乏口语化元素
 
-请确保生成的策略简洁明了，易于应用，并能有效减少AI检测率。`
+2. **识别原文独特风格** (必须保留的元素):
+   - 语言风格: 文艺/学术/口语化/幽默讽刺等
+   - 情感基调: 激昂/平和/批判/赞美等
+   - 独特表达: 作者特有的比喻、典故、词汇选择
+   - 结构特点: 原文的论证逻辑和展开方式
+
+3. **生成优化策略** (5-8条具体建议):
+   每条策略应包含:
+   - 具体问题: 指出哪里存在AI特征
+   - 优化方向: 如何修改(提供2-3个改写示例)
+   - 保留要点: 哪些元素必须保持不变
+
+4. **重点提示**:
+   - 优先级: 保留原文韵味 > 降低AI率
+   - 改写幅度: 适度即可,避免面目全非
+   - 质量标准: 像"有个性的人"写的,不是"完美的机器"
+
+请按照上述框架输出分析报告和优化策略。`
   },
   {
     id: 'academic-paper',
@@ -185,35 +237,115 @@ const presetPrompts = [
 仅输出优化后的文本内容，不要包含对优化过程的说明。`
   },
   {
+    id: 'literary-prose',
+    name: '文学散文深度优化',
+    description: '专门针对文学性散文的优化方案,在保留文学韵味的同时,注入人类写作的自然"不完美",特别适合优美散文、随笔、叙事类文章',
+    prompt: `你是一位资深的散文作家和编辑。请优化以下文学散文,在保留其文学价值和美感的同时,使其更具有人类手写的自然特征:
+
+【核心原则】
+这是一篇文学作品,必须保持其艺术性、情感深度和独特韵味。我们的目标不是"降低文学性",而是让它读起来更像是一位有才华的人类作者在某个下午,坐在书桌前,用钢笔一笔一笔写下的。
+
+【优化策略】
+
+1. **句式自然化** (在优美与自然间找平衡):
+   - 打破过于工整的句式对称:不是每句都要那么"完美"
+   - 在长句后加入1-2个极短的句子(5-8字),模拟情绪停顿
+   - 偶尔使用破折号打断自己的思路:"那是——我该怎么说呢——一种难以名状的感觉"
+   - 允许一两处略显"啰嗦"的重复,人在动情时会这样
+
+2. **词汇层面**:
+   - 保留90%的优美词汇,但替换10%过于"文学腔"的表达
+   - 适当加入1-2个日常口语词("说实话"、"老实讲"、"怎么说呢")
+   - 在诗意表达中偶尔"失手"使用一个略显平常的词,再自我修正
+   - 用词不要句句都是"高级词",穿插一些朴素表达
+
+3. **情感波动**:
+   - 加入微妙的情绪起伏:在平静叙述中突然一句感叹
+   - 使用省略号表达沉思:"那时候......说不清是什么感觉"
+   - 某些地方故意"克制"情感,用简单的短句代替华丽的长句
+   - 模拟回忆的不确定性:"大概是......不对,应该是......"
+
+4. **结构微调** (保留整体框架):
+   - 保持原有的叙事脉络和段落结构
+   - 在某1-2个段落中加入"思维岔开":突然想到相关的另一件小事,然后再回来
+   - 某些过渡不要那么"丝滑",允许有一点点生硬或跳跃
+   - 段落长度制造落差:某段特别长(深入展开),下一段突然很短(点到为止)
+
+5. **细节处理**:
+   - 加入1-2个非常具体的小细节(某个时刻的光线、某个声音)
+   - 在抒情段落后,突然来一句很实在的大白话
+   - 用括号加入一些"作者的旁白"或补充说明
+   - 某些地方故意不那么"诗意",用直白的方式说
+
+6. **标点符号**:
+   - 多用破折号、省略号营造思考感和停顿感
+   - 某些地方用顿号而非逗号,制造节奏变化
+   - 偶尔一个独立成段的短句,前后空行
+
+【绝对禁止】
+- ❌ 删除核心意象(藤椅、光影、时间等)
+- ❌ 改变情感基调和主题思想
+- ❌ 破坏文章的文学性和美感
+- ❌ 用网络流行语或过度口语化
+
+【质量标准】
+改写后的文章应该让人感觉:这是一位有文学修养的人,在某个情绪饱满的时刻写下的真挚文字。它有美感,但不完美;有激情,但有克制;有技巧,但不炫技。读起来像是人在写作,而非机器在生成。
+
+现在请优化文本,只输出优化后的正文。`
+  },
+  {
     id: 'hybrid-mode',
-    name: '分析+改写混合模式',
-    description: '先分析文本AI特征并生成针对性策略，再根据这些策略进行全文改写，提供更加个性化和有针对性的优化结果',
-    prompt: `请执行以下两阶段处理，以优化文本并减少AI特征：
+    name: '分析+改写混合模式(2026增强版)',
+    description: '先深度分析文本AI特征和原文风格,再根据针对性策略进行改写。强调困惑度/突发度优化的同时,确保保留原文韵味',
+    prompt: `你是一位顶级的文本优化专家。请执行两阶段处理来优化文本:
 
-【第一阶段：分析与策略制定】
-首先，请分析以下内容，并生成去除AI特征的策略：
+【第一阶段: 深度分析】
 
+分析以下文本:
 ===原文开始===
 {text}
 ===原文结束===
 
-请提供以下分析：
-1. 文本整体风格特点概述
-2. 识别出的主要AI特征（如句式规律、词汇选择模式、结构特点等）
-3. 针对性的改写策略（至少5条具体的改进方向）
+1. **AI特征检测** (2026年检测指标):
+   - 困惑度问题: 找出AI常用短语、可预测搭配
+   - 突发度问题: 检查句长是否均匀、结构是否对称
+   - AI标志: "值得注意"、"综上所述"、"首先其次"等
 
-【第二阶段：全文改写】
-现在，请根据上述制定的策略，对原文进行全面改写。改写时请注意：
-- 保持原文的主要信息和观点
-- 应用上述策略中提出的改进方向
-- 增加语言的自然性和人类特征，包括：
-  * 加入适当的主观表达和个人观点
-  * 使用更多样化的句式和段落长度
-  * 引入一些口语化或非正式表达
-  * 适当增加情感色彩和语气变化
-  * 打破过于规整的结构和逻辑展开
+2. **原文风格识别** (必须保留):
+   - 语言风格: 是文艺腔/学术范/口语化/幽默讽刺?
+   - 情感基调: 激昂/平和/批判/温暖?
+   - 独特表达: 有哪些特色比喻、典故、词汇选择?
+   - 核心韵味: 什么让这篇文章"有味道"?
 
-请直接输出改写后的文本，不需要包含分析过程或策略说明。`
+3. **制定优化策略** (5-8条):
+   每条包含: 具体问题 + 修改方向 + 保留要素
+
+【第二阶段: 针对性改写】
+
+根据上述分析,按以下原则改写:
+
+**困惑度提升技术:**
+- 非常规词汇搭配 (避免AI常用表达)
+- 同义词随机化 (同一概念多种表达)
+- 口语化和模糊表达 ("大概"、"差不多")
+- 主观判断词 ("我觉得"、"在我看来")
+
+**突发度增强技术:**
+- 剧烈句长对比: 超短句(5-10字) + 超长句(40-60字)
+- 复杂度波动: 简单句 ↔ 多层嵌套句
+- 破碎句和不完整句 (营造思考感)
+
+**风格保留核心:**
+- 保留原文独特比喻、典故、专业术语
+- 维持情感基调和语言风格
+- 只改表达方式,不改核心观点
+- 适度优化,避免面目全非
+
+**优化程度控制:**
+- 优先级: 保留韵味 > 降低AI率 > 语言流畅
+- 质量标准: 像"有个性的人"写的,不是"完美机器"
+
+现在请执行完整的两阶段处理,最终只输出改写后的文本正文(不包含分析过程)。`
   }
 ];
 
@@ -605,23 +737,34 @@ ${strategiesResponse.content}
       title="AI 文本优化器"
       subtitle="去除AI文本特征，使内容更自然、更人性化"
     >
-      <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+      <div className="bg-white rounded border border-gray-200 overflow-hidden">
         <div className="p-6">
-          <div className="mb-6 bg-blue-50 text-blue-800 p-4 rounded-md border border-blue-200">
-            <h3 className="text-lg font-medium mb-2 flex items-center">
+          <div className="mb-6 bg-gray-50 text-gray-700 p-4 rounded border border-gray-200">
+            <h3 className="text-base font-medium mb-2 flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>AI检测原理与对抗技术</span>
+              <span>2026年AI检测原理与对抗策略</span>
             </h3>
             <div className="text-sm space-y-2">
-              <p>为了有效应对<strong>GPTZero</strong>等AI检测器，默认已选择&quot;人类写作特征优化&quot;预设，该预设专门针对AI检测器使用的统计学特征进行优化。</p>
-              <p className="font-medium mt-2">主要对抗两项关键指标:</p>
+              <p>本工具针对<strong>腾讯Matrix(朱雀)</strong>、<strong>GPTZero</strong>等2026年最新AI检测器进行了深度优化,同时特别强调<strong>保留原文韵味</strong>。</p>
+
+              <p className="font-medium mt-3">核心对抗指标:</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li><strong>困惑度 (Perplexity)</strong>: 衡量文本的不可预测性。人类写作通常具有较高的困惑度，因为人类的词汇选择更具创造性和不可预测性。AI检测器会将低困惑度文本标记为AI生成。</li>
-                <li><strong>突发性 (Burstiness)</strong>: 衡量句子长度和结构的变化程度。人类写作的句子长度变化更大，从极短句到复杂长句不等，而AI生成内容往往句子长度更为均匀。</li>
+                <li><strong>困惑度 (Perplexity)</strong>: 衡量文本的不可预测性。AI文本因使用常见词汇搭配而困惑度低。我们通过非常规表达、同义词随机化、低频词汇等技术提升困惑度。</li>
+                <li><strong>突发度 (Burstiness)</strong>: 衡量句子长度和复杂度的变化。AI文本句长往往过于均匀。我们创造剧烈的长短句对比(超短句5-10字 + 超长句40-60字),打破规律性。</li>
               </ul>
-              <p className="mt-2">我们的优化技术基于最新研究，通过扰乱统计特征分布、打破句长模式、调整信息熵和模拟个性化语义嵌入等方法，帮助文本逃避检测，同时保持内容质量。</p>
+
+              <p className="font-medium mt-3 text-gray-700">重要: 风格保留机制</p>
+              <p className="text-gray-600">优化策略已升级,现在会:</p>
+              <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                <li>优先识别并保留原文的独特表达、比喻、典故</li>
+                <li>维持原文的情感基调和语言风格(文艺/学术/口语化等)</li>
+                <li>只改变表达方式,不篡改核心观点和重要数据</li>
+                <li>优化程度适度,避免过度修改导致&quot;丢失韵味&quot;</li>
+              </ul>
+
+              <p className="mt-2"><strong>优化原则:</strong> 保留原文风格 &gt; 降低AI率 &gt; 语言流畅。目标是让文本读起来像&quot;有个性的人类&quot;写的,而非&quot;完美的AI&quot;改写的。</p>
             </div>
           </div>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -663,12 +806,12 @@ ${strategiesResponse.content}
             />
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm text-gray-600 mb-2">
                 输入需要处理的文本
               </label>
               <textarea
                 rows={8}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 placeholder="请粘贴需要去除AI特征的文本..."
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
@@ -678,7 +821,7 @@ ${strategiesResponse.content}
 
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-md font-medium text-gray-900">洗稿指令</h3>
+                <h3 className="text-sm font-medium text-gray-700">洗稿指令</h3>
                 <div className="flex items-center space-x-4">
                   {selectedPromptId === 'human-writing' && (
                     <div className="flex items-center">
@@ -687,14 +830,14 @@ ${strategiesResponse.content}
                         id="useTwoStep"
                         checked={useTwoStepMode}
                         onChange={(e) => setUseTwoStepMode(e.target.checked)}
-                        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                        className="h-4 w-4 text-accent border-gray-300 rounded"
                       />
                       <label htmlFor="useTwoStep" className="ml-2 text-sm text-gray-600">
                         使用两步优化（先分析再优化）
                       </label>
                     </div>
                   )}
-                  
+
                   <div className="flex items-center">
                     <input
                       type="checkbox"
@@ -706,7 +849,7 @@ ${strategiesResponse.content}
                           setUseTwoStepMode(false);
                         }
                       }}
-                      className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-accent border-gray-300 rounded"
                     />
                     <label htmlFor="useCustom" className="ml-2 text-sm text-gray-600">
                       使用自定义指令
@@ -717,13 +860,13 @@ ${strategiesResponse.content}
 
               {!useCustomPrompt ? (
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">选择优化预设</label>
+                  <label className="block text-sm text-gray-600 mb-1">选择优化预设</label>
                   <div className="grid grid-cols-1 gap-2">
                     {presetPrompts.map((preset) => (
                       <div
                         key={preset.id}
-                        className={`border rounded-md p-3 cursor-pointer transition-colors ${selectedPromptId === preset.id
-                            ? 'bg-blue-50 border-blue-500'
+                        className={`border rounded p-3 cursor-pointer transition-colors ${selectedPromptId === preset.id
+                            ? 'bg-gray-50 border-gray-400'
                             : 'hover:bg-gray-50 border-gray-200'
                           }`}
                         onClick={() => {
@@ -733,17 +876,17 @@ ${strategiesResponse.content}
                           }
                         }}
                       >
-                        <div className="font-medium">{preset.name}</div>
+                        <div className="font-medium text-sm">{preset.name}</div>
                         <div className="mt-2 text-xs text-gray-500">
                           {preset.description}
                         </div>
                       </div>
                     ))}
                   </div>
-                  
+
                   {useTwoStepMode && (
-                    <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
-                      <p className="text-xs text-yellow-800">
+                    <div className="mt-3 p-3 bg-gray-50 border border-gray-200 rounded">
+                      <p className="text-xs text-gray-600">
                         <strong>两步优化模式:</strong> 系统将先使用AI修改指导分析文本并生成个性化优化策略，然后根据这些策略使用人类写作特征优化模式改写文本。这种方式需要两次API调用，但能产生更有针对性的优化结果。
                       </p>
                     </div>
@@ -751,12 +894,12 @@ ${strategiesResponse.content}
                 </div>
               ) : (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm text-gray-600 mb-2">
                     自定义指令
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                     placeholder="请输入自定义的洗稿指令..."
                     value={customPrompt}
                     onChange={(e) => setCustomPrompt(e.target.value)}
@@ -773,9 +916,9 @@ ${strategiesResponse.content}
               <button
                 type="submit"
                 disabled={loading || !content.trim() || (useCustomPrompt && !customPrompt.trim()) || (apiProvider !== 'ollama' && !llmApiKey)}
-                className={`px-4 py-2 rounded-md text-white font-medium ${loading || !content.trim() || (useCustomPrompt && !customPrompt.trim()) || (apiProvider !== 'ollama' && !llmApiKey)
-                    ? 'bg-indigo-300 cursor-not-allowed'
-                    : 'bg-indigo-600 hover:bg-indigo-700'
+                className={`px-4 py-2 rounded text-white text-sm ${loading || !content.trim() || (useCustomPrompt && !customPrompt.trim()) || (apiProvider !== 'ollama' && !llmApiKey)
+                    ? 'bg-gray-300 cursor-not-allowed'
+                    : 'bg-accent hover:bg-accent-dark transition-colors'
                   }`}
               >
                 {loading ? (processingStep || '处理中...') : '优化文本'}
@@ -784,7 +927,7 @@ ${strategiesResponse.content}
           </form>
 
           {error && (
-            <div className="mt-4 bg-red-50 text-red-800 p-3 rounded-md border border-red-200">
+            <div className="mt-4 bg-gray-50 text-gray-700 p-3 rounded border border-gray-200">
               <p className="text-sm flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -796,13 +939,13 @@ ${strategiesResponse.content}
 
           {result && (
             <div className="mt-6">
-              <h3 className="text-lg font-medium mb-2">优化结果</h3>
-              <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
-                <div className="whitespace-pre-wrap">{result}</div>
+              <h3 className="text-base font-medium text-gray-700 mb-2">优化结果</h3>
+              <div className="bg-gray-50 p-4 rounded border border-gray-200">
+                <div className="whitespace-pre-wrap text-sm">{result}</div>
                 <div className="mt-4 flex justify-end">
                   <button
                     type="button"
-                    className="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    className="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs rounded text-gray-700 bg-white hover:bg-gray-50 transition-colors"
                     onClick={() => {
                       navigator.clipboard.writeText(result);
                       alert('已复制到剪贴板');
@@ -818,8 +961,8 @@ ${strategiesResponse.content}
               {apiResponseDetails && (
                 <div className="mt-4">
                   <details className="text-sm text-gray-600">
-                    <summary className="cursor-pointer hover:text-gray-900">{useTwoStepMode ? '查看优化策略和处理详情' : '查看技术细节'}</summary>
-                    <div className="mt-2 p-3 bg-gray-50 rounded-md border border-gray-200 overflow-auto">
+                    <summary className="cursor-pointer hover:text-gray-800">{useTwoStepMode ? '查看优化策略和处理详情' : '查看技术细节'}</summary>
+                    <div className="mt-2 p-3 bg-gray-50 rounded border border-gray-200 overflow-auto">
                       <pre className="text-xs whitespace-pre-wrap">{apiResponseDetails}</pre>
                     </div>
                   </details>

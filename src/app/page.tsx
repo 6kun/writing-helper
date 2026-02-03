@@ -3,7 +3,10 @@ import FeatureLayout from './components/FeatureLayout';
 
 export default function Home() {
   return (
-    <FeatureLayout title="AI 写作助手" subtitle="由先进的大语言模型驱动的智能写作助手">
+    <FeatureLayout
+      title="AI 写作助手"
+      subtitle="简洁、优雅、专注于内容的智能写作工具"
+    >
       <WritingAssistant />
     </FeatureLayout>
   );

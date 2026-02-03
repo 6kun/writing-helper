@@ -144,19 +144,19 @@ export default function StreamingContent({
     const suggestions = getErrorSuggestions(error);
 
     return (
-      <div className={`bg-red-50 border border-red-200 rounded-lg p-6 ${className}`}>
-        <div className="flex items-center text-red-800 mb-3">
+      <div className={`bg-gray-50 border border-gray-200 rounded p-6 ${className}`}>
+        <div className="flex items-center text-gray-700 mb-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span className="font-medium">生成失败</span>
         </div>
-        <p className="text-red-700 mb-4">{error}</p>
+        <p className="text-gray-600 mb-4">{error}</p>
 
         {suggestions.length > 0 && (
-          <div className="mt-3 p-3 bg-red-100 border border-red-200 rounded-md">
-            <p className="text-sm font-medium text-red-800 mb-2">建议解决方案：</p>
-            <ul className="text-sm text-red-700 space-y-1">
+          <div className="mt-3 p-3 bg-white border border-gray-200 rounded">
+            <p className="text-sm font-medium text-gray-700 mb-2">建议解决方案：</p>
+            <ul className="text-sm text-gray-600 space-y-1">
               {suggestions.map((suggestion, index) => (
                 <li key={index} className="flex items-start">
                   <svg className="h-4 w-4 mr-1 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -174,7 +174,7 @@ export default function StreamingContent({
 
   if (!content && !displayedContent && !isStreaming) {
     return (
-      <div className={`bg-gray-50 border border-gray-200 rounded-lg p-6 text-center ${className}`}>
+      <div className={`bg-gray-50 border border-gray-200 rounded p-6 text-center ${className}`}>
         <div className="text-gray-500">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -188,37 +188,37 @@ export default function StreamingContent({
   return (
     <div className={`relative flex flex-col h-full ${className}`}>
       {/* 标题栏 */}
-      <div className="bg-gray-50 border-b border-gray-200 px-4 py-2 rounded-t-lg flex items-center justify-between">
+      <div className="bg-gray-50 border-b border-gray-200 px-4 py-2 rounded-t flex items-center justify-between">
         <div className="flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          <span className="font-medium text-gray-700">生成结果</span>
+          <span className="font-medium text-gray-700 text-sm">生成结果</span>
         </div>
-        
+
         {/* 状态指示器 */}
         <div className="flex items-center text-sm">
           {isStreaming && (
-            <div className="flex items-center text-blue-600">
-              <div className={`rounded-full h-3 w-3 border border-blue-600 border-t-transparent mr-2 ${prefersReducedMotion ? '' : 'animate-spin'}`}></div>
-              <span>正在生成…</span>
+            <div className="flex items-center text-accent">
+              <div className={`rounded-full h-3 w-3 border border-accent border-t-transparent mr-2 ${prefersReducedMotion ? '' : 'animate-spin'}`}></div>
+              <span className="text-xs">正在生成…</span>
             </div>
           )}
           {isComplete && !isStreaming && (
-            <div className="flex items-center text-green-600">
+            <div className="flex items-center text-gray-600">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>生成完成</span>
+              <span className="text-xs">生成完成</span>
             </div>
           )}
         </div>
       </div>
 
       {/* 内容区域 */}
-      <div 
+      <div
         ref={contentRef}
-        className="bg-white border border-gray-200 border-t-0 rounded-b-lg p-6 flex-1 overflow-y-auto"
+        className="bg-white border border-gray-200 border-t-0 rounded-b p-6 flex-1 overflow-y-auto"
         style={{ minHeight: '400px' }}
       >
         {displayedContent || isStreaming ? (
@@ -230,7 +230,7 @@ export default function StreamingContent({
             {/* 打字机光标 */}
             {(isStreaming || !isComplete) && (
               <span
-                className={`inline-block w-2 h-5 ml-1 bg-blue-600 ${
+                className={`inline-block w-2 h-5 ml-1 bg-accent ${
                   prefersReducedMotion ? 'opacity-100' : `transition-opacity duration-100 ${showCursor ? 'opacity-100' : 'opacity-0'}`
                 }`}
                 style={{ animation: prefersReducedMotion || showCursor ? 'none' : 'blink 1s infinite' }}
@@ -240,8 +240,8 @@ export default function StreamingContent({
         ) : (
           <div className="text-center text-gray-500 py-12">
             <div className={prefersReducedMotion ? '' : 'animate-pulse'}>
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
+                <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>

@@ -114,12 +114,12 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md space-y-6">
+    <div className="space-y-3">
       {/* Basic Information */}
-      <div className="border border-gray-200 rounded-md overflow-hidden">
+      <div className="border border-gray-200 rounded overflow-hidden">
         <button
           type="button"
-          className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
+          className="w-full flex justify-between items-center px-4 py-2.5 hover:bg-gray-50 focus:outline-none transition-colors text-left"
           onClick={(e) => {
             e.preventDefault();
             toggleSection('basic');
@@ -127,18 +127,18 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
           aria-expanded={expandedSection === 'basic'}
           aria-controls="basic-section"
         >
-          <h3 className="text-lg font-semibold">基本信息</h3>
-          <span aria-hidden="true">{expandedSection === 'basic' ? '▼' : '▶'}</span>
+          <h3 className="text-sm text-gray-700 font-medium">基本信息</h3>
+          <span className="text-xs text-gray-400" aria-hidden="true">{expandedSection === 'basic' ? '▼' : '▶'}</span>
         </button>
         
         {expandedSection === 'basic' && (
-          <div className="p-4 space-y-4">
+          <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-200">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 风格概述
               </label>
               <textarea
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.style_summary}
                 onChange={(e) => handleChange('', 'style_summary', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -150,10 +150,10 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
       </div>
       
       {/* Language Section */}
-      <div className="border border-gray-200 rounded-md overflow-hidden">
+      <div className="border border-gray-200 rounded overflow-hidden">
         <button
           type="button"
-          className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
+          className="w-full flex justify-between items-center px-4 py-2.5 hover:bg-gray-50 focus:outline-none transition-colors text-left"
           onClick={(e) => {
             e.preventDefault();
             toggleSection('language');
@@ -161,15 +161,15 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
           aria-expanded={expandedSection === 'language'}
           aria-controls="language-section"
         >
-          <h3 className="text-lg font-semibold">语言风格</h3>
-          <span aria-hidden="true">{expandedSection === 'language' ? '▼' : '▶'}</span>
+          <h3 className="text-sm text-gray-700 font-medium">语言风格</h3>
+          <span className="text-xs text-gray-400" aria-hidden="true">{expandedSection === 'language' ? '▼' : '▶'}</span>
         </button>
         
         {expandedSection === 'language' && (
-          <div className="p-4 space-y-4">
+          <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-200 space-y-4">
             {/* Sentence Pattern */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 句型模式
               </label>
               <div className="space-y-2">
@@ -177,14 +177,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                   <div key={index} className="flex items-center gap-2">
                     <input
                       type="text"
-                      className="flex-1 p-2 border border-gray-300 rounded-md"
+                      className="flex-1 px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                       value={pattern}
                       onChange={(e) => handleArrayChange('language', 'sentence_pattern', index, e.target.value)}
                       onKeyDown={handleKeyDown}
                     />
                     <button
                       type="button"
-                      className="p-1 text-red-600 hover:text-red-800"
+                      className="p-1 text-gray-400 hover:text-gray-600"
                       onClick={() => removeArrayItem('language', 'sentence_pattern', index)}
                       aria-label={`删除句型模式: ${pattern || '空'}`}
                     >
@@ -194,7 +194,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                 ))}
                 <button
                   type="button"
-                  className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                  className="text-accent hover:text-accent-dark text-sm"
                   onClick={() => addArrayItem('language', 'sentence_pattern')}
                 >
                   + 添加句型模式
@@ -204,20 +204,20 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
 
             {/* Word Choice */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 用词选择
               </label>
               
               <div className="ml-4 space-y-3">
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">
+                  <label className="block text-xs text-gray-500 mb-2">
                     正式程度 (1-5)
                   </label>
                   <input
                     type="number"
                     min="1"
                     max="5"
-                    className="w-full p-2 border border-gray-300 rounded-md"
+                    className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                     value={style.language.word_choice.formality_level}
                     onChange={(e) => handleChange('language', 'word_choice.formality_level', Number(e.target.value))}
                     onKeyDown={handleKeyDown}
@@ -225,7 +225,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                 </div>
 
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">
+                  <label className="block text-xs text-gray-500 mb-2">
                     偏好词汇
                   </label>
                   <div className="space-y-2">
@@ -233,14 +233,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                       <div key={index} className="flex items-center gap-2">
                         <input
                           type="text"
-                          className="flex-1 p-2 border border-gray-300 rounded-md"
+                          className="flex-1 px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                           value={word}
                           onChange={(e) => handleArrayChange('language', 'word_choice.preferred_words', index, e.target.value)}
                           onKeyDown={handleKeyDown}
                         />
                         <button
                           type="button"
-                          className="p-1 text-red-600 hover:text-red-800"
+                          className="p-1 text-gray-400 hover:text-gray-600"
                           onClick={() => removeArrayItem('language', 'word_choice.preferred_words', index)}
                           aria-label={`删除偏好词汇: ${word || '空'}`}
                         >
@@ -250,7 +250,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                     ))}
                     <button
                       type="button"
-                      className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                      className="text-accent hover:text-accent-dark text-sm"
                       onClick={() => addArrayItem('language', 'word_choice.preferred_words')}
                     >
                       + 添加偏好词汇
@@ -259,7 +259,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                 </div>
 
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">
+                  <label className="block text-xs text-gray-500 mb-2">
                     避免使用的词汇
                   </label>
                   <div className="space-y-2">
@@ -267,14 +267,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                       <div key={index} className="flex items-center gap-2">
                         <input
                           type="text"
-                          className="flex-1 p-2 border border-gray-300 rounded-md"
+                          className="flex-1 px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                           value={word}
                           onChange={(e) => handleArrayChange('language', 'word_choice.avoided_words', index, e.target.value)}
                           onKeyDown={handleKeyDown}
                         />
                         <button
                           type="button"
-                          className="p-1 text-red-600 hover:text-red-800"
+                          className="p-1 text-gray-400 hover:text-gray-600"
                           onClick={() => removeArrayItem('language', 'word_choice.avoided_words', index)}
                           aria-label={`删除避免词汇: ${word || '空'}`}
                         >
@@ -284,7 +284,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                     ))}
                     <button
                       type="button"
-                      className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                      className="text-accent hover:text-accent-dark text-sm"
                       onClick={() => addArrayItem('language', 'word_choice.avoided_words')}
                     >
                       + 添加避免词汇
@@ -296,7 +296,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
 
             {/* Rhetoric */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 修辞手法
               </label>
               <div className="space-y-2">
@@ -304,14 +304,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                   <div key={index} className="flex items-center gap-2">
                     <input
                       type="text"
-                      className="flex-1 p-2 border border-gray-300 rounded-md"
+                      className="flex-1 px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                       value={item}
                       onChange={(e) => handleArrayChange('language', 'rhetoric', index, e.target.value)}
                       onKeyDown={handleKeyDown}
                     />
                     <button
                       type="button"
-                      className="p-1 text-red-600 hover:text-red-800"
+                      className="p-1 text-gray-400 hover:text-gray-600"
                       onClick={() => removeArrayItem('language', 'rhetoric', index)}
                       aria-label={`删除修辞手法: ${item || '空'}`}
                     >
@@ -321,7 +321,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                 ))}
                 <button
                   type="button"
-                  className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                  className="text-accent hover:text-accent-dark text-sm"
                   onClick={() => addArrayItem('language', 'rhetoric')}
                 >
                   + 添加修辞手法
@@ -333,10 +333,10 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
       </div>
 
       {/* Structure Section */}
-      <div className="border border-gray-200 rounded-md overflow-hidden">
+      <div className="border border-gray-200 rounded overflow-hidden">
         <button
           type="button"
-          className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
+          className="w-full flex justify-between items-center px-4 py-2.5 hover:bg-gray-50 focus:outline-none transition-colors text-left"
           onClick={(e) => {
             e.preventDefault();
             toggleSection('structure');
@@ -344,19 +344,19 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
           aria-expanded={expandedSection === 'structure'}
           aria-controls="structure-section"
         >
-          <h3 className="text-lg font-semibold">结构</h3>
-          <span aria-hidden="true">{expandedSection === 'structure' ? '▼' : '▶'}</span>
+          <h3 className="text-sm text-gray-700 font-medium">结构</h3>
+          <span className="text-xs text-gray-400" aria-hidden="true">{expandedSection === 'structure' ? '▼' : '▶'}</span>
         </button>
         
         {expandedSection === 'structure' && (
-          <div className="p-4 space-y-4">
+          <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-200 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 段落长度
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.structure.paragraph_length}
                 onChange={(e) => handleChange('structure', 'paragraph_length', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -364,12 +364,12 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 过渡风格
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.structure.transition_style}
                 onChange={(e) => handleChange('structure', 'transition_style', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -377,12 +377,12 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 层次模式
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.structure.hierarchy_pattern}
                 onChange={(e) => handleChange('structure', 'hierarchy_pattern', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -393,10 +393,10 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
       </div>
 
       {/* Narrative Section */}
-      <div className="border border-gray-200 rounded-md overflow-hidden">
+      <div className="border border-gray-200 rounded overflow-hidden">
         <button
           type="button"
-          className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
+          className="w-full flex justify-between items-center px-4 py-2.5 hover:bg-gray-50 focus:outline-none transition-colors text-left"
           onClick={(e) => {
             e.preventDefault();
             toggleSection('narrative');
@@ -404,19 +404,19 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
           aria-expanded={expandedSection === 'narrative'}
           aria-controls="narrative-section"
         >
-          <h3 className="text-lg font-semibold">叙述</h3>
-          <span aria-hidden="true">{expandedSection === 'narrative' ? '▼' : '▶'}</span>
+          <h3 className="text-sm text-gray-700 font-medium">叙述</h3>
+          <span className="text-xs text-gray-400" aria-hidden="true">{expandedSection === 'narrative' ? '▼' : '▶'}</span>
         </button>
         
         {expandedSection === 'narrative' && (
-          <div className="p-4 space-y-4">
+          <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-200 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 视角
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.narrative.perspective}
                 onChange={(e) => handleChange('narrative', 'perspective', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -424,12 +424,12 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 时间顺序
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.narrative.time_sequence}
                 onChange={(e) => handleChange('narrative', 'time_sequence', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -437,12 +437,12 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 叙述态度
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.narrative.narrator_attitude}
                 onChange={(e) => handleChange('narrative', 'narrator_attitude', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -453,10 +453,10 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
       </div>
 
       {/* Emotion Section */}
-      <div className="border border-gray-200 rounded-md overflow-hidden">
+      <div className="border border-gray-200 rounded overflow-hidden">
         <button
           type="button"
-          className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
+          className="w-full flex justify-between items-center px-4 py-2.5 hover:bg-gray-50 focus:outline-none transition-colors text-left"
           onClick={(e) => {
             e.preventDefault();
             toggleSection('emotion');
@@ -464,21 +464,21 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
           aria-expanded={expandedSection === 'emotion'}
           aria-controls="emotion-section"
         >
-          <h3 className="text-lg font-semibold">情感</h3>
-          <span aria-hidden="true">{expandedSection === 'emotion' ? '▼' : '▶'}</span>
+          <h3 className="text-sm text-gray-700 font-medium">情感</h3>
+          <span className="text-xs text-gray-400" aria-hidden="true">{expandedSection === 'emotion' ? '▼' : '▶'}</span>
         </button>
         
         {expandedSection === 'emotion' && (
-          <div className="p-4 space-y-4">
+          <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-200 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 情感强度 (1-10)
               </label>
               <input
                 type="number"
                 min="1"
                 max="10"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.emotion.intensity}
                 onChange={(e) => handleChange('emotion', 'intensity', Number(e.target.value))}
                 onKeyDown={handleKeyDown}
@@ -486,12 +486,12 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 表达方式
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.emotion.expression_style}
                 onChange={(e) => handleChange('emotion', 'expression_style', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -499,12 +499,12 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 情感基调
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.emotion.tone}
                 onChange={(e) => handleChange('emotion', 'tone', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -515,10 +515,10 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
       </div>
 
       {/* Thinking Section */}
-      <div className="border border-gray-200 rounded-md overflow-hidden">
+      <div className="border border-gray-200 rounded overflow-hidden">
         <button
           type="button"
-          className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
+          className="w-full flex justify-between items-center px-4 py-2.5 hover:bg-gray-50 focus:outline-none transition-colors text-left"
           onClick={(e) => {
             e.preventDefault();
             toggleSection('thinking');
@@ -526,19 +526,19 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
           aria-expanded={expandedSection === 'thinking'}
           aria-controls="thinking-section"
         >
-          <h3 className="text-lg font-semibold">思维</h3>
-          <span aria-hidden="true">{expandedSection === 'thinking' ? '▼' : '▶'}</span>
+          <h3 className="text-sm text-gray-700 font-medium">思维</h3>
+          <span className="text-xs text-gray-400" aria-hidden="true">{expandedSection === 'thinking' ? '▼' : '▶'}</span>
         </button>
         
         {expandedSection === 'thinking' && (
-          <div className="p-4 space-y-4">
+          <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-200 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 逻辑模式
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.thinking.logic_pattern}
                 onChange={(e) => handleChange('thinking', 'logic_pattern', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -546,14 +546,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 思考深度 (1-10)
               </label>
               <input
                 type="number"
                 min="1"
                 max="10"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.thinking.depth}
                 onChange={(e) => handleChange('thinking', 'depth', Number(e.target.value))}
                 onKeyDown={handleKeyDown}
@@ -561,12 +561,12 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 思考节奏
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.thinking.rhythm}
                 onChange={(e) => handleChange('thinking', 'rhythm', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -577,10 +577,10 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
       </div>
 
       {/* Uniqueness Section */}
-      <div className="border border-gray-200 rounded-md overflow-hidden">
+      <div className="border border-gray-200 rounded overflow-hidden">
         <button
           type="button"
-          className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
+          className="w-full flex justify-between items-center px-4 py-2.5 hover:bg-gray-50 focus:outline-none transition-colors text-left"
           onClick={(e) => {
             e.preventDefault();
             toggleSection('uniqueness');
@@ -588,14 +588,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
           aria-expanded={expandedSection === 'uniqueness'}
           aria-controls="uniqueness-section"
         >
-          <h3 className="text-lg font-semibold">独特性</h3>
-          <span aria-hidden="true">{expandedSection === 'uniqueness' ? '▼' : '▶'}</span>
+          <h3 className="text-sm text-gray-700 font-medium">独特性</h3>
+          <span className="text-xs text-gray-400" aria-hidden="true">{expandedSection === 'uniqueness' ? '▼' : '▶'}</span>
         </button>
         
         {expandedSection === 'uniqueness' && (
-          <div className="p-4 space-y-4">
+          <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-200 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 标志性短语
               </label>
               <div className="space-y-2">
@@ -603,14 +603,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                   <div key={index} className="flex items-center gap-2">
                     <input
                       type="text"
-                      className="flex-1 p-2 border border-gray-300 rounded-md"
+                      className="flex-1 px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                       value={phrase}
                       onChange={(e) => handleArrayChange('uniqueness', 'signature_phrases', index, e.target.value)}
                       onKeyDown={handleKeyDown}
                     />
                     <button
                       type="button"
-                      className="p-1 text-red-600 hover:text-red-800"
+                      className="p-1 text-gray-400 hover:text-gray-600"
                       onClick={() => removeArrayItem('uniqueness', 'signature_phrases', index)}
                       aria-label={`删除标志性短语: ${phrase || '空'}`}
                     >
@@ -620,7 +620,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                 ))}
                 <button
                   type="button"
-                  className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                  className="text-accent hover:text-accent-dark text-sm"
                   onClick={() => addArrayItem('uniqueness', 'signature_phrases')}
                 >
                   + 添加标志性短语
@@ -629,7 +629,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 意象系统
               </label>
               <div className="space-y-2">
@@ -637,14 +637,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                   <div key={index} className="flex items-center gap-2">
                     <input
                       type="text"
-                      className="flex-1 p-2 border border-gray-300 rounded-md"
+                      className="flex-1 px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                       value={image}
                       onChange={(e) => handleArrayChange('uniqueness', 'imagery_system', index, e.target.value)}
                       onKeyDown={handleKeyDown}
                     />
                     <button
                       type="button"
-                      className="p-1 text-red-600 hover:text-red-800"
+                      className="p-1 text-gray-400 hover:text-gray-600"
                       onClick={() => removeArrayItem('uniqueness', 'imagery_system', index)}
                       aria-label={`删除意象: ${image || '空'}`}
                     >
@@ -654,7 +654,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                 ))}
                 <button
                   type="button"
-                  className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                  className="text-accent hover:text-accent-dark text-sm"
                   onClick={() => addArrayItem('uniqueness', 'imagery_system')}
                 >
                   + 添加意象
@@ -666,10 +666,10 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
       </div>
 
       {/* Cultural Section */}
-      <div className="border border-gray-200 rounded-md overflow-hidden">
+      <div className="border border-gray-200 rounded overflow-hidden">
         <button
           type="button"
-          className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
+          className="w-full flex justify-between items-center px-4 py-2.5 hover:bg-gray-50 focus:outline-none transition-colors text-left"
           onClick={(e) => {
             e.preventDefault();
             toggleSection('cultural');
@@ -677,14 +677,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
           aria-expanded={expandedSection === 'cultural'}
           aria-controls="cultural-section"
         >
-          <h3 className="text-lg font-semibold">文化</h3>
-          <span aria-hidden="true">{expandedSection === 'cultural' ? '▼' : '▶'}</span>
+          <h3 className="text-sm text-gray-700 font-medium">文化</h3>
+          <span className="text-xs text-gray-400" aria-hidden="true">{expandedSection === 'cultural' ? '▼' : '▶'}</span>
         </button>
         
         {expandedSection === 'cultural' && (
-          <div className="p-4 space-y-4">
+          <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-200 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 典故
               </label>
               <div className="space-y-2">
@@ -692,14 +692,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                   <div key={index} className="flex items-center gap-2">
                     <input
                       type="text"
-                      className="flex-1 p-2 border border-gray-300 rounded-md"
+                      className="flex-1 px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                       value={allusion}
                       onChange={(e) => handleArrayChange('cultural', 'allusions', index, e.target.value)}
                       onKeyDown={handleKeyDown}
                     />
                     <button
                       type="button"
-                      className="p-1 text-red-600 hover:text-red-800"
+                      className="p-1 text-gray-400 hover:text-gray-600"
                       onClick={() => removeArrayItem('cultural', 'allusions', index)}
                       aria-label={`删除典故: ${allusion || '空'}`}
                     >
@@ -709,7 +709,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                 ))}
                 <button
                   type="button"
-                  className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                  className="text-accent hover:text-accent-dark text-sm"
                   onClick={() => addArrayItem('cultural', 'allusions')}
                 >
                   + 添加典故
@@ -718,7 +718,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 知识领域
               </label>
               <div className="space-y-2">
@@ -726,14 +726,14 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                   <div key={index} className="flex items-center gap-2">
                     <input
                       type="text"
-                      className="flex-1 p-2 border border-gray-300 rounded-md"
+                      className="flex-1 px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                       value={domain}
                       onChange={(e) => handleArrayChange('cultural', 'knowledge_domains', index, e.target.value)}
                       onKeyDown={handleKeyDown}
                     />
                     <button
                       type="button"
-                      className="p-1 text-red-600 hover:text-red-800"
+                      className="p-1 text-gray-400 hover:text-gray-600"
                       onClick={() => removeArrayItem('cultural', 'knowledge_domains', index)}
                       aria-label={`删除知识领域: ${domain || '空'}`}
                     >
@@ -743,7 +743,7 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
                 ))}
                 <button
                   type="button"
-                  className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                  className="text-accent hover:text-accent-dark text-sm"
                   onClick={() => addArrayItem('cultural', 'knowledge_domains')}
                 >
                   + 添加知识领域
@@ -755,10 +755,10 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
       </div>
 
       {/* Rhythm Section */}
-      <div className="border border-gray-200 rounded-md overflow-hidden">
+      <div className="border border-gray-200 rounded overflow-hidden">
         <button
           type="button"
-          className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
+          className="w-full flex justify-between items-center px-4 py-2.5 hover:bg-gray-50 focus:outline-none transition-colors text-left"
           onClick={(e) => {
             e.preventDefault();
             toggleSection('rhythm');
@@ -766,19 +766,19 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
           aria-expanded={expandedSection === 'rhythm'}
           aria-controls="rhythm-section"
         >
-          <h3 className="text-lg font-semibold">节奏</h3>
-          <span aria-hidden="true">{expandedSection === 'rhythm' ? '▼' : '▶'}</span>
+          <h3 className="text-sm text-gray-700 font-medium">节奏</h3>
+          <span className="text-xs text-gray-400" aria-hidden="true">{expandedSection === 'rhythm' ? '▼' : '▶'}</span>
         </button>
         
         {expandedSection === 'rhythm' && (
-          <div className="p-4 space-y-4">
+          <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-200 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 音节模式
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.rhythm.syllable_pattern}
                 onChange={(e) => handleChange('rhythm', 'syllable_pattern', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -786,12 +786,12 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 停顿模式
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.rhythm.pause_pattern}
                 onChange={(e) => handleChange('rhythm', 'pause_pattern', e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -799,12 +799,12 @@ export default function PromptForm({ initialStyle, onStyleChange }: PromptFormPr
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs text-gray-500 mb-2">
                 节奏
               </label>
               <input
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 text-sm text-gray-700 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors bg-white"
                 value={style.rhythm.tempo}
                 onChange={(e) => handleChange('rhythm', 'tempo', e.target.value)}
                 onKeyDown={handleKeyDown}
