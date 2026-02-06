@@ -156,7 +156,7 @@ export default function WritingAssistant() {
   }, [apiSettings.apiProvider, apiSettings.llmApiKey]);
 
   // 获取 Ollama 模型
-  const fetchOllamaModels = async () => {
+  const fetchOllamaModels = useCallback(async () => {
     try {
       const response = await fetch('/api/proxy/ollama-models', {
         method: 'POST',
@@ -188,10 +188,10 @@ export default function WritingAssistant() {
       console.error('获取 Ollama 模型失败:', error);
       return [];
     }
-  };
+  }, [apiSettings.model]);
 
   // 获取 Cherry 模型
-  const fetchCherryModels = async () => {
+  const fetchCherryModels = useCallback(async () => {
     if (!apiSettings.llmApiKey) return [];
 
     try {
@@ -230,7 +230,7 @@ export default function WritingAssistant() {
       console.error('获取 Cherry 模型失败:', error);
       return [];
     }
-  };
+  }, [apiSettings.llmApiKey, apiSettings.model]);
 
   // 导出 Markdown
   const handleExport = useCallback(() => {

@@ -173,7 +173,7 @@ export default function ApiSettings({
                   <li>• 仅在本地浏览器中临时存储</li>
                   <li>• 使用简单加密保护</li>
                   <li>• 会话结束后自动清除</li>
-                  <li>• 请勿在公共设备上选择"记住我"</li>
+                  <li>• 请勿在公共设备上选择&quot;记住我&quot;</li>
                 </ul>
               </div>
             )}

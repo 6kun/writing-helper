@@ -47,6 +47,7 @@ export default function AiGuideChat({ onComplete, llmConfig }: AiGuideChatProps)
       questionType: 'greeting'
     };
     setMessages([initMessage]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // 发送用户消息

@@ -22,7 +22,7 @@ export default function ArticlePolisher() {
   const [error, setError] = useState<string | null>(null);
   
   // 获取可用的 Ollama 模型
-  const fetchOllamaModels = async () => {
+  const fetchOllamaModels = React.useCallback(async () => {
     try {
       setError(null); // 清除之前的错误
       console.log('开始获取 Ollama 模型列表...');
@@ -86,10 +86,10 @@ export default function ArticlePolisher() {
       setError('无法获取 Ollama 模型列表，请确保 Ollama 服务正在运行');
       return []; // 返回空数组，避免后续处理出错
     }
-  };
+  }, [ollamaModel]);
 
   // 获取 Cherry Server 模型列表
-  const fetchCherryModels = async () => {
+  const fetchCherryModels = React.useCallback(async () => {
     try {
       setError(null);
       if (!apiKey) {
@@ -137,7 +137,7 @@ export default function ArticlePolisher() {
       setError('无法获取 Cherry Server 模型列表，请确保服务已启动并填入有效 API Key');
       return [] as string[];
     }
-  };
+  }, [apiKey, ollamaModel]);
 
   const fetchAvailableModels = async () => {
     if (apiProvider === 'ollama') return fetchOllamaModels();
@@ -151,7 +151,7 @@ export default function ArticlePolisher() {
     if (apiProvider === 'ollama') {
       fetchOllamaModels();
     }
-  }, [apiProvider]);
+  }, [apiProvider, fetchOllamaModels]);
 
   const toggleApiSettings = () => {
     setShowApiSettings(!showApiSettings);

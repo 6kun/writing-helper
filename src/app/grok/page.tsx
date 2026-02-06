@@ -30,7 +30,7 @@ export default function GrokTest() {
   const [error, setError] = useState<string | null>(null);
 
   // 获取可用的 Ollama 模型
-  const fetchOllamaModels = async () => {
+  const fetchOllamaModels = React.useCallback(async () => {
     try {
       const response = await fetch('http://localhost:11434/api/tags');
       if (!response.ok) {
@@ -47,7 +47,7 @@ export default function GrokTest() {
       console.error('获取模型列表失败:', error);
       setError('无法获取 Ollama 模型列表，请确保 Ollama 服务正在运行');
     }
-  };
+  }, [ollamaModel]);
 
   // 当切换到 Ollama 时获取模型列表
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,7 +55,7 @@ export default function GrokTest() {
     if (isOllama) {
       fetchOllamaModels();
     }
-  }, [isOllama]);
+  }, [isOllama, fetchOllamaModels]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -612,11 +612,13 @@ export default function WechatFormatter() {
     if (textareaRef.current) {
       resizeObserver.observe(textareaRef.current);
     }
-    
+
+    const currentTextarea = textareaRef.current;
+
     // 清理
     return () => {
-      if (textareaRef.current) {
-        resizeObserver.unobserve(textareaRef.current);
+      if (currentTextarea) {
+        resizeObserver.unobserve(currentTextarea);
       }
       resizeObserver.disconnect();
     };
